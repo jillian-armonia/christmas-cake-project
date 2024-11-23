@@ -1,0 +1,56 @@
+body{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.container{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background-color: #386641;
+    padding: 10px;
+}
+
+#cake{
+    background-color: #6A994E;
+}
+
+#cake-colors{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#cake-colors button{
+    width: 35px;
+    height: 35px;
+}
+
+#cake img{
+    width: 500px;
+    height: auto;
+}
+
+#menu{
+    width: 250px;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#fruits{
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: #BC4749;
+}
+
+#fruits button{
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+}
