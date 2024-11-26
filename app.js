@@ -53,15 +53,6 @@ document.addEventListener('mouseup', () => {
     fruit.dom.style.cursor = 'auto';
 })
 
-//Create a pseudocode to create a new fruit when the button is clicked
-
-//CLICK the fruit button
-    //CREATE a new div element (newFruit)
-    //ADD a class attribute of 'fruit'
-    //IF the button id is strawberry
-        //THEN put a strawberry in the div html
-    //APPEND the newFruit to the button
-
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('fruitBtn')){
         let newFruit = document.createElement('div');
@@ -70,6 +61,32 @@ document.addEventListener('click', (event) => {
         switch (event.target.id){
             case 'strawberry':
                 newFruit.innerHTML = '🍓';
+                break;
+            case 'banana':
+                newFruit.innerHTML = '🍌';
+                break;
+            case 'melon':
+                newFruit.innerHTML = '🍈';
+                break;
+            case 'orange':
+                newFruit.innerHTML = '🍊';
+                break;
+            case 'cherry':
+                newFruit.innerHTML = '🍒';
+                break;
+            case 'apple':
+                newFruit.innerHTML = '🍎';
+                break;
+            case 'pineapple':
+                newFruit.innerHTML = '🍍';
+                break;
+            case 'peach':
+                newFruit.innerHTML = '🍑';
+                break;
+            case 'kiwi-fruit':
+                newFruit.innerHTML = '🥝';
+                break;
+            default:
                 break;
         }
 
