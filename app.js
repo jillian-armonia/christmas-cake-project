@@ -93,3 +93,14 @@ document.addEventListener('click', (event) => {
         event.target.append(newFruit)
     }
 })
+
+/***********CLEAR BUTTON FEATURES************/
+let clearBtn = document.getElementById('clear');
+
+clearBtn.onclick = () => {
+    let allFruits = document.querySelectorAll('div.moved');
+
+    allFruits.forEach((movedFruit) => {
+        movedFruit.remove();
+    })
+}
