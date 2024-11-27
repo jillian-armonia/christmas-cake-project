@@ -9,6 +9,12 @@ let fruit = {
     y: null,
 }
 
+let currentFruit = {
+    dom: null,
+    x: null,
+    y: null,
+}
+
 let maxIndex = 0;
 const container = document.getElementById('container')
 const menu = document.getElementById('menu')
@@ -51,23 +57,20 @@ document.addEventListener('pointermove', (event) => {
         x: fruit.x + distance.x,
         y: fruit.y + distance.y
     }
-    fruit.dom.style.left = (fruit.x + distance.x) + "px";
-    fruit.dom.style.top = (fruit.y + distance.y) + "px";
+    fruit.dom.style.left = (currentFruit.x) + "px";
+    fruit.dom.style.top = (currentFruit.y) + "px";
     fruit.dom.style.cursor = 'grab';
 })
 
-let currentFruit = {
-    x: null,
-    y: null,
-}
-
 document.addEventListener('pointerup', () => {
     //Removes the fruit whenever it's around the menu
-    if (currentFruit.x >= menu.getBoundingClientRect().left - 100) {
+    if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '') {
         fruit.dom.remove();
+        currentFruit.dom = null;
     } else {
         fruit.dom.parentNode.removeChild(fruit.dom);
         cake.appendChild(fruit.dom);
+        currentFruit.dom = fruit.dom;
     }
 
     fruit.dom = null
@@ -119,22 +122,21 @@ document.addEventListener('click', (event) => {
 
 /***********ENLARGING AND SHRINKING FEATURES************/
 let zoom = 1;
-let zoomSpeed = 0.06
+let zoomSpeed = 0.1
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
-        event.preventDefault()
-        if (event.deltaY > 0){
-            event.target.style.transform = `scale(${(zoom += zoomSpeed)})`;
-        } else {
-            event.target.style.transform = `scale(${zoom -= zoomSpeed})`
-        } //Please limit the largest it can go and the smallest it can go
+        if (event.deltaY > 0 && event.target.getBoundingClientRect().width > 50){
+            event.target.style.transform = `scale(${(zoom -= zoomSpeed)})`;
+        } else if (event.deltaY < 0 && event.target.getBoundingClientRect().width < 400){
+            event.target.style.transform = `scale(${zoom += zoomSpeed})`
+        }
     }
 
 })
 
 /***********CLEAR BUTTON FEATURES************/
-let clearBtn = document.getElementById('clear');
+const clearBtn = document.getElementById('clear');
 
 clearBtn.onclick = () => {
     let allFruits = document.querySelectorAll('div.moved');
@@ -143,3 +145,10 @@ clearBtn.onclick = () => {
         movedFruit.remove();
     })
 }
+
+/***********ROTATE FEATURES************/
+const rotateInput = document.getElementById('rotate')
+
+rotateInput.addEventListener('input', (event) => {
+    currentFruit.dom.style.transform = `rotate(${event.target.value}deg)`
+})
