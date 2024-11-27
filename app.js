@@ -10,11 +10,12 @@ let fruit = {
 }
 
 let maxIndex = 0;
-let container = document.getElementById('container')
+const container = document.getElementById('container')
+const menu = document.getElementById('menu')
+const cake = document.getElementById('cake')
 
 document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit')){
-        event.preventDefault();
         cursor = {
             x: event.clientX,
             y: event.clientY
@@ -28,7 +29,7 @@ document.addEventListener('pointerdown', (event) => {
         if (event.target.classList.contains('moved') === false){
             event.target.classList.add('moved');
             event.target.parentNode.click();
-            event.target.style.fontSize = '70px'
+            event.target.style.fontSize = '100px'
         }
 
         event.target.style.zIndex = `${maxIndex += 1}`
@@ -37,7 +38,6 @@ document.addEventListener('pointerdown', (event) => {
 
 document.addEventListener('pointermove', (event) => {
     if(fruit.dom === null) return;
-    event.preventDefault();
     let currentCursor = {
         x: event.clientX,
         y: event.clientY
@@ -46,15 +46,35 @@ document.addEventListener('pointermove', (event) => {
         x: currentCursor.x - cursor.x,
         y: currentCursor.y - cursor.y
     }
+
+    currentFruit = {
+        x: fruit.x + distance.x,
+        y: fruit.y + distance.y
+    }
     fruit.dom.style.left = (fruit.x + distance.x) + "px";
     fruit.dom.style.top = (fruit.y + distance.y) + "px";
     fruit.dom.style.cursor = 'grab';
 })
 
+let currentFruit = {
+    x: null,
+    y: null,
+}
+
 document.addEventListener('pointerup', () => {
+    //Removes the fruit whenever it's around the menu
+    if (currentFruit.x >= menu.getBoundingClientRect().left - 100) {
+        fruit.dom.remove();
+    } else {
+        fruit.dom.parentNode.removeChild(fruit.dom);
+        cake.appendChild(fruit.dom);
+    }
+
     fruit.dom = null
     fruit.dom.style.cursor = 'auto';
 })
+
+/***********DUPLICATE FRUIT FEATURES************/
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('fruitBtn')){
