@@ -10,9 +10,11 @@ let fruit = {
 }
 
 let maxIndex = 0;
+let container = document.getElementById('container')
 
-document.addEventListener('mousedown', (event) => {
+document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit')){
+        event.preventDefault();
         cursor = {
             x: event.clientX,
             y: event.clientY
@@ -33,8 +35,9 @@ document.addEventListener('mousedown', (event) => {
     }
 })
 
-document.addEventListener('mousemove', (event) => {
+document.addEventListener('pointermove', (event) => {
     if(fruit.dom === null) return;
+    event.preventDefault();
     let currentCursor = {
         x: event.clientX,
         y: event.clientY
@@ -48,7 +51,7 @@ document.addEventListener('mousemove', (event) => {
     fruit.dom.style.cursor = 'grab';
 })
 
-document.addEventListener('mouseup', () => {
+document.addEventListener('pointerup', () => {
     fruit.dom = null
     fruit.dom.style.cursor = 'auto';
 })
@@ -92,6 +95,22 @@ document.addEventListener('click', (event) => {
 
         event.target.append(newFruit)
     }
+})
+
+/***********ENLARGING AND SHRINKING FEATURES************/
+let zoom = 1;
+let zoomSpeed = 0.06
+
+document.addEventListener('wheel', (event) => {
+    if (event.target.classList.contains('moved')){
+        event.preventDefault()
+        if (event.deltaY > 0){
+            event.target.style.transform = `scale(${(zoom += zoomSpeed)})`;
+        } else {
+            event.target.style.transform = `scale(${zoom -= zoomSpeed})`
+        } //Please limit the largest it can go and the smallest it can go
+    }
+
 })
 
 /***********CLEAR BUTTON FEATURES************/
