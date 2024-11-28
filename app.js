@@ -19,6 +19,9 @@ let maxIndex = 0;
 const container = document.getElementById('container')
 const menu = document.getElementById('menu')
 const cake = document.getElementById('cake')
+const rotateRegex = /rotate\(\d+deg\)/;
+const scaleRegex = /scale\(\d+\.*\d*\)/;
+const numberRegex = /\d+\.*\d*/;
 
 document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit')){
@@ -36,9 +39,22 @@ document.addEventListener('pointerdown', (event) => {
             event.target.classList.add('moved');
             event.target.parentNode.click();
             event.target.style.fontSize = '100px'
+            zoom = 1;
+            rotateValue = 0;
+            rotateInput.value = rotateValue;
         }
 
         event.target.style.zIndex = `${maxIndex += 1}`
+
+        let transform = fruit.dom.style.transform;
+        let scale = transform.match(scaleRegex);
+        let scaleValue = scale[0].match(numberRegex);
+        zoom = Number(scaleValue[0]);
+
+        let rotate = transform.match(rotateRegex);
+        let rotateNumber = rotate[0].match(numberRegex);
+        rotateValue = Number(rotateNumber);
+        rotateInput.value = rotateValue;
     }
 })
 
