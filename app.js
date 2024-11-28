@@ -122,17 +122,16 @@ document.addEventListener('click', (event) => {
 
 /***********ENLARGING AND SHRINKING FEATURES************/
 let zoom = 1;
-let zoomSpeed = 0.1
+let zoomSpeed = 0.1;
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
         if (event.deltaY > 0 && event.target.getBoundingClientRect().width > 50){
-            event.target.style.transform = `scale(${(zoom -= zoomSpeed)})`;
+            event.target.style.transform = `scale(${(zoom -= zoomSpeed)}) rotate(${rotateValue}deg)`;
         } else if (event.deltaY < 0 && event.target.getBoundingClientRect().width < 400){
-            event.target.style.transform = `scale(${zoom += zoomSpeed})`
+            event.target.style.transform = `scale(${zoom += zoomSpeed}) rotate(${rotateValue}deg)`
         }
     }
-
 })
 
 /***********CLEAR BUTTON FEATURES************/
@@ -147,8 +146,11 @@ clearBtn.onclick = () => {
 }
 
 /***********ROTATE FEATURES************/
-const rotateInput = document.getElementById('rotate')
+const rotateInput = document.getElementById('rotate');
+let rotateValue = 0;
+
 
 rotateInput.addEventListener('input', (event) => {
-    currentFruit.dom.style.transform = `rotate(${event.target.value}deg)`
-})
+    rotateValue = event.target.value;
+    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg)`
+});

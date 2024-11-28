@@ -36,6 +36,18 @@ body{
     height: 35px;
 }
 
+#white{
+    background-color: #FEFEE3;
+}
+
+#pink{
+    background-color: #FFC9B9;
+}
+
+#brown{
+    background-color: #D68C45;
+}
+
 #menu{
     width: 250px;
     height: inherit;
@@ -67,6 +79,7 @@ body{
 .fruit{
     position: absolute;
     z-index: 0;
+    transform: rotate(0) scaleX(1);
 }
 
 .moved{
