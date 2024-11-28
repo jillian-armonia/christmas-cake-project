@@ -7,7 +7,7 @@ This will be heavily inspired by [this website](https://www.kumamoto-kmm.ed.jp/k
 
 1. Drag and drop fruits onto a Christmas cake.
 2. Change the color of the cake.
-3. Enlarge and shrink fruits by using the zooming in and out. (how to store the values for the transform properties)
+3. Enlarge and shrink fruits by using the zooming in and out. 
 4. When clicking on a fruit, it goes on the topmost layer of fruits.
 5. Erase all fruits with a button.
 6. Rotate the fruits.

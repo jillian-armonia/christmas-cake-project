@@ -187,3 +187,17 @@ document.addEventListener('click', (event) => {
             break;
     }
 })
+
+/***********ALPHABET LETTERS FEATURES************/
+function createLetters(){
+    const letters = document.getElementById('letters');
+
+    for (let i = 0; i < 26; i++){
+        let button = document.createElement('button');
+        button.classList.add('letter');
+        button.innerHTML = `${String.fromCharCode(65 + i)}`;
+        letters.appendChild(button);
+    }
+}
+
+window.addEventListener('load', createLetters)
