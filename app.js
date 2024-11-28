@@ -21,6 +21,7 @@ const menu = document.getElementById('menu')
 const cake = document.getElementById('cake')
 const rotateRegex = /rotate\(\d+deg\)/;
 const scaleRegex = /scale\(\d+\.*\d*\)/;
+const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 
 document.addEventListener('pointerdown', (event) => {
@@ -42,6 +43,7 @@ document.addEventListener('pointerdown', (event) => {
             zoom = 1;
             rotateValue = 0;
             rotateInput.value = rotateValue;
+            flipValue = 1;
         }
 
         event.target.style.zIndex = `${maxIndex += 1}`
@@ -55,6 +57,10 @@ document.addEventListener('pointerdown', (event) => {
         let rotateNumber = rotate[0].match(numberRegex);
         rotateValue = Number(rotateNumber);
         rotateInput.value = rotateValue;
+
+        let scaleX = transform.match(scaleXRegex);
+        let scaleXValue = scaleX[0].match(numberRegex);
+        flipValue = Number(scaleXValue);
     }
 })
 
@@ -143,9 +149,9 @@ let zoomSpeed = 0.1;
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
         if (event.deltaY > 0 && event.target.getBoundingClientRect().width > 50){
-            event.target.style.transform = `scale(${(zoom -= zoomSpeed)}) rotate(${rotateValue}deg)`;
+            event.target.style.transform = `scale(${(zoom -= zoomSpeed)}) rotate(${rotateValue}deg) scaleX(${flipValue})`;
         } else if (event.deltaY < 0 && event.target.getBoundingClientRect().width < 400){
-            event.target.style.transform = `scale(${zoom += zoomSpeed}) rotate(${rotateValue}deg)`
+            event.target.style.transform = `scale(${zoom += zoomSpeed}) rotate(${rotateValue}deg) scaleX(${flipValue})`
         }
     }
 })
@@ -168,8 +174,16 @@ let rotateValue = 0;
 
 rotateInput.addEventListener('input', (event) => {
     rotateValue = event.target.value;
-    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg)`
+    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
 });
+
+let flipBtn = document.getElementById('flip');
+let flipValue = 1;
+
+flipBtn.onclick = () => {
+    flipValue *= -1;
+    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+}
 
 /***********CAKE COLORS FEATURES************/
 document.addEventListener('click', (event) => {
