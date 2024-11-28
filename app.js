@@ -154,3 +154,20 @@ rotateInput.addEventListener('input', (event) => {
     rotateValue = event.target.value;
     currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg)`
 });
+
+/***********CAKE COLORS FEATURES************/
+document.addEventListener('click', (event) => {
+    switch(event.target.id){
+        case 'white':
+            cake.style.backgroundImage = `url(./sweets_marzipan_cake.png)`
+            break;
+        case 'pink':
+            cake.style.backgroundImage = `url(./king_oukan.png)`;
+            break;
+        case 'brown':
+            cake.style.backgroundImage = `url(./medical_bannouyaku.png)`;
+            break;
+        default:
+            break;
+    }
+})
