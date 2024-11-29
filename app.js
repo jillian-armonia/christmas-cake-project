@@ -155,9 +155,9 @@ let zoomSpeed = 0.1;
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && event.target.getBoundingClientRect().width > 50){
+        if (event.deltaY > 0 && zoom > 0.3){
             event.target.style.transform = `scale(${(zoom -= zoomSpeed)}) rotate(${rotateValue}deg) scaleX(${flipValue})`;
-        } else if (event.deltaY < 0 && event.target.getBoundingClientRect().width < 400){
+        } else if (event.deltaY < 0 && zoom < 3){
             event.target.style.transform = `scale(${zoom += zoomSpeed}) rotate(${rotateValue}deg) scaleX(${flipValue})`
         }
     }
