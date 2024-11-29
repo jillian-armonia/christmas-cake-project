@@ -25,7 +25,7 @@ const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 
 document.addEventListener('pointerdown', (event) => {
-    if (event.target.classList.contains('fruit')){
+    if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
         cursor = {
             x: event.clientX,
             y: event.clientY
@@ -140,6 +140,13 @@ document.addEventListener('click', (event) => {
 
         event.target.append(newFruit)
     }
+
+    if (event.target.classList.contains('letterBtn')){
+        let newLetter = document.createElement('div');
+        newLetter.classList.add('letter');
+        newLetter.innerHTML = event.target.id;
+        event.target.append(newLetter);
+    }
 })
 
 /***********ENLARGING AND SHRINKING FEATURES************/
@@ -208,8 +215,9 @@ function createLetters(){
 
     for (let i = 0; i < 26; i++){
         let button = document.createElement('button');
-        button.classList.add('letter');
-        button.innerHTML = `${String.fromCharCode(65 + i)}`;
+        button.setAttribute("id", `${String.fromCharCode(65 + i)}`);
+        button.classList.add("letterBtn");
+        button.innerHTML = `<div class="letter">${String.fromCharCode(65 + i)}</div>`;
         letters.appendChild(button);
     }
 }

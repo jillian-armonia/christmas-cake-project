@@ -6,7 +6,8 @@ body{
 }
 
 .container{
-    width: 90%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -22,7 +23,7 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
     width: 600px;
-    height: 600px;
+    height: inherit;
 }
 
 #cake-colors{
@@ -69,7 +70,7 @@ body{
     gap: 10px;
 }
 
-#fruits button{
+#fruits button, #letters button{
     width: 70px;
     height: 70px;
     font-size: 50px;
@@ -79,7 +80,7 @@ body{
     align-items: center;
 }
 
-.fruit{
+.fruit, .letter{
     position: absolute;
     z-index: 0;
     transform: rotate(0) scaleX(1);
@@ -88,4 +89,24 @@ body{
 .moved{
     top: auto;
     left: auto;
+}
+
+#letters{
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    gap: 15px;
+    background-color: #BC4749;
+    padding: 10px;
+}
+
+#letters button{
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.letter{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
