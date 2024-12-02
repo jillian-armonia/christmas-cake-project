@@ -16,7 +16,6 @@ This will be heavily inspired by [this website](https://www.kumamoto-kmm.ed.jp/k
 
 ### Notes for Me
 1. Refactor the app.js file
-    - Make a function that returns the transform property string. This can detect the change in values of each variable.
     - Make a function for the regex
 2. Divide the app.js file into different parts and make small comments about each feature
 3. Make assets for the pictures.

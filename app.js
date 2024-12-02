@@ -156,9 +156,11 @@ let zoomSpeed = 0.1;
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
         if (event.deltaY > 0 && zoom > 0.3){
-            event.target.style.transform = `scale(${(zoom -= zoomSpeed)}) rotate(${rotateValue}deg) scaleX(${flipValue})`;
+            zoom -= zoomSpeed
+            event.target.style.transform = changeTransformProp();
         } else if (event.deltaY < 0 && zoom < 3){
-            event.target.style.transform = `scale(${zoom += zoomSpeed}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+            zoom += zoomSpeed
+            event.target.style.transform = changeTransformProp()
         }
     }
 })
@@ -181,7 +183,7 @@ let rotateValue = 0;
 
 rotateInput.addEventListener('input', (event) => {
     rotateValue = event.target.value;
-    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+    currentFruit.dom.style.transform = changeTransformProp()
 });
 
 let flipBtn = document.getElementById('flip');
@@ -189,20 +191,20 @@ let flipValue = 1;
 
 flipBtn.onclick = () => {
     flipValue *= -1;
-    currentFruit.dom.style.transform = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+    currentFruit.dom.style.transform = changeTransformProp()
 }
 
 /***********CAKE COLORS FEATURES************/
 document.addEventListener('click', (event) => {
     switch(event.target.id){
         case 'white':
-            cake.style.backgroundImage = `url(./sweets_marzipan_cake.png)`
+            cake.style.backgroundImage = `url(./white-cake.png)`
             break;
         case 'pink':
-            cake.style.backgroundImage = `url(./king_oukan.png)`;
+            cake.style.backgroundImage = `url(./pink-cake.png)`;
             break;
         case 'brown':
-            cake.style.backgroundImage = `url(./medical_bannouyaku.png)`;
+            cake.style.backgroundImage = `url(./brown-cake.png)`;
             break;
         default:
             break;
@@ -223,3 +225,13 @@ function createLetters(){
 }
 
 window.addEventListener('load', createLetters)
+
+/***********REFACTORED FUNCTIONS************/
+//CHANGE the string if you add anything to the transform property
+function changeTransformProp(){
+    let transformString = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+
+    return transformString;
+}
+
+//MAKE function for the RegEx
