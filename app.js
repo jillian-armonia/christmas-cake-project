@@ -25,6 +25,7 @@ const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 
 document.addEventListener('pointerdown', (event) => {
+    event.preventDefault()
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
         cursor = {
             x: event.clientX,
@@ -61,6 +62,8 @@ document.addEventListener('pointerdown', (event) => {
         let scaleX = transform.match(scaleXRegex);
         let scaleXValue = scaleX[0].match(numberRegex);
         flipValue = Number(scaleXValue);
+
+        fruit.dom.style.transform = changeTransformProp()
     }
 })
 
