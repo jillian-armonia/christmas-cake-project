@@ -25,8 +25,8 @@ const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 
 document.addEventListener('pointerdown', (event) => {
-    event.preventDefault()
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
+        event.preventDefault()
         cursor = {
             x: event.clientX,
             y: event.clientY
@@ -106,36 +106,41 @@ document.addEventListener('pointerup', () => {
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('fruitBtn')){
-        let newFruit = document.createElement('div');
+        let newFruit = document.createElement('img');
         newFruit.classList.add('fruit');
+
+        const setFruitAttribute = (src, alt) => {
+            newFruit.setAttribute('src', src);
+            newFruit.setAttribute('alt', alt);
+        }
 
         switch (event.target.id){
             case 'strawberry':
-                newFruit.innerHTML = '🍓';
+                setFruitAttribute("./fruits/strawberry.png", 'strawberry');
                 break;
             case 'banana':
-                newFruit.innerHTML = '🍌';
+                setFruitAttribute("./fruits/banana.png", 'banana');
                 break;
             case 'melon':
-                newFruit.innerHTML = '🍈';
+                setFruitAttribute("./fruits/melon.png", 'melon');
                 break;
             case 'orange':
-                newFruit.innerHTML = '🍊';
+                setFruitAttribute("./fruits/fruit_slice10_orange.png", 'orange slice');
                 break;
             case 'cherry':
-                newFruit.innerHTML = '🍒';
+                setFruitAttribute("./fruits/fruit_sakuranbo.png", 'cherry');
                 break;
             case 'apple':
-                newFruit.innerHTML = '🍎';
+                setFruitAttribute("./fruits/fruit_slice08_apple.png", 'apple slice');
                 break;
             case 'pineapple':
-                newFruit.innerHTML = '🍍';
+                setFruitAttribute("./fruits/fruit_slice03_pineapple_ring.png", 'pineapple ring');
                 break;
             case 'peach':
-                newFruit.innerHTML = '🍑';
+                setFruitAttribute("./fruits/furit_mark16_momo_cut.png", 'peach slice');
                 break;
             case 'kiwi-fruit':
-                newFruit.innerHTML = '🥝';
+                setFruitAttribute("./fruits/cut_fruit_kiwi.png", 'kiwi slice');
                 break;
             default:
                 break;
