@@ -95,6 +95,7 @@ body{
 .moved{
     top: auto;
     left: auto;
+    width: 80px;
 }
 
 #letters{

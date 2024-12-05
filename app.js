@@ -24,6 +24,27 @@ const scaleRegex = /scale\(\d+\.*\d*\)/;
 const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 
+function getTransformValues(prop, regex){
+    let transform = fruit.dom.style.transform;
+    let matchedProp = transform.match(regex);
+    let propString = matchedProp[0].match(numberRegex);
+    let propValue = Number(propString[0]);
+
+    switch (prop){
+        case 'scale':
+            scaleValue = propValue;
+            break;
+        case 'rotate':
+            rotateValue = propValue;
+            break;
+        case 'scaleX':
+            flipValue = propValue;
+            break;
+        default:
+            break;
+    }
+}
+
 document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
         event.preventDefault()
@@ -41,27 +62,16 @@ document.addEventListener('pointerdown', (event) => {
             event.target.classList.add('moved');
             event.target.parentNode.click();
             event.target.style.fontSize = '100px'
-            zoom = 1;
+            scaleValue = 1;
             rotateValue = 0;
             rotateInput.value = rotateValue;
             flipValue = 1;
         }
 
         event.target.style.zIndex = `${maxIndex += 1}`
-
-        let transform = fruit.dom.style.transform;
-        let scale = transform.match(scaleRegex);
-        let scaleValue = scale[0].match(numberRegex);
-        zoom = Number(scaleValue[0]);
-
-        let rotate = transform.match(rotateRegex);
-        let rotateNumber = rotate[0].match(numberRegex);
-        rotateValue = Number(rotateNumber);
-        rotateInput.value = rotateValue;
-
-        let scaleX = transform.match(scaleXRegex);
-        let scaleXValue = scaleX[0].match(numberRegex);
-        flipValue = Number(scaleXValue);
+        getTransformValues('scale', scaleRegex);
+        getTransformValues('rotate', rotateRegex);
+        getTransformValues('scaleX', scaleXRegex);
 
         fruit.dom.style.transform = changeTransformProp()
     }
@@ -97,9 +107,9 @@ document.addEventListener('pointerup', () => {
         cake.appendChild(fruit.dom);
         currentFruit.dom = fruit.dom;
     }
-
-    fruit.dom = null
     fruit.dom.style.cursor = 'auto';
+    fruit.dom = null
+
 })
 
 /***********DUPLICATE FRUIT FEATURES************/
@@ -158,16 +168,16 @@ document.addEventListener('click', (event) => {
 })
 
 /***********ENLARGING AND SHRINKING FEATURES************/
-let zoom = 1;
+let scaleValue = 1;
 let zoomSpeed = 0.1;
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && zoom > 0.3){
-            zoom -= zoomSpeed
+        if (event.deltaY > 0 && scaleValue > 0.3){
+            scaleValue -= zoomSpeed
             event.target.style.transform = changeTransformProp();
-        } else if (event.deltaY < 0 && zoom < 3){
-            zoom += zoomSpeed
+        } else if (event.deltaY < 0 && scaleValue < 3){
+            scaleValue += zoomSpeed
             event.target.style.transform = changeTransformProp()
         }
     }
@@ -237,9 +247,7 @@ window.addEventListener('load', createLetters)
 /***********REFACTORED FUNCTIONS************/
 //CHANGE the string if you add anything to the transform property
 function changeTransformProp(){
-    let transformString = `scale(${zoom}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+    let transformString = `scale(${scaleValue}) rotate(${rotateValue}deg) scaleX(${flipValue})`
 
     return transformString;
 }
-
-//MAKE function for the RegEx
