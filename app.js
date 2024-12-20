@@ -135,7 +135,7 @@ document.addEventListener('click', (event) => {
                 setFruitAttribute("./fruits/melon.png", 'melon');
                 break;
             case 'orange':
-                setFruitAttribute("./fruits/fruit_slice10_orange.png", 'orange slice');
+                setFruitAttribute("./fruits/orange.png", 'orange slice');
                 break;
             case 'cherry':
                 setFruitAttribute("./fruits/fruit_sakuranbo.png", 'cherry');
@@ -187,10 +187,15 @@ document.addEventListener('wheel', (event) => {
 const clearBtn = document.getElementById('clear');
 
 clearBtn.onclick = () => {
-    let allFruits = document.querySelectorAll('div.moved');
+    let allLetters = document.querySelectorAll('div.moved');
+    let allFruits = document.querySelectorAll('img.moved');
 
     allFruits.forEach((movedFruit) => {
         movedFruit.remove();
+    })
+
+    allLetters.forEach((movedLetter) => {
+        movedLetter.remove();
     })
 }
 
