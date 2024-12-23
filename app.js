@@ -138,7 +138,7 @@ document.addEventListener('click', (event) => {
                 setFruitAttribute("./fruits/orange.png", 'orange slice');
                 break;
             case 'cherry':
-                setFruitAttribute("./fruits/fruit_sakuranbo.png", 'cherry');
+                setFruitAttribute("./fruits/cherry.png", 'cherry');
                 break;
             case 'apple':
                 setFruitAttribute("./fruits/fruit_slice08_apple.png", 'apple slice');
