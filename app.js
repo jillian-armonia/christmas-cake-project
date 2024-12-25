@@ -141,16 +141,16 @@ document.addEventListener('click', (event) => {
                 setFruitAttribute("./fruits/cherry.png", 'cherry');
                 break;
             case 'apple':
-                setFruitAttribute("./fruits/fruit_slice08_apple.png", 'apple slice');
+                setFruitAttribute("./fruits/apple.png", 'apple slice');
                 break;
             case 'pineapple':
-                setFruitAttribute("./fruits/fruit_slice03_pineapple_ring.png", 'pineapple ring');
+                setFruitAttribute("./fruits/pineapple.png", 'pineapple ring');
                 break;
             case 'peach':
-                setFruitAttribute("./fruits/furit_mark16_momo_cut.png", 'peach slice');
+                setFruitAttribute("./fruits/peach.png", 'peach slice');
                 break;
             case 'kiwi-fruit':
-                setFruitAttribute("./fruits/cut_fruit_kiwi.png", 'kiwi slice');
+                setFruitAttribute("./fruits/kiwifruit.png", 'kiwi slice');
                 break;
             default:
                 break;
