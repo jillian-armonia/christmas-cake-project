@@ -96,6 +96,7 @@ body{
     top: auto;
     left: auto;
     width: 80px;
+    -webkit-text-stroke: white 3px;
 }
 
 #letters{

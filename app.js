@@ -16,9 +16,10 @@ let currentFruit = {
 }
 
 let maxIndex = 0;
-const container = document.getElementById('container')
-const menu = document.getElementById('menu')
-const cake = document.getElementById('cake')
+const container = document.getElementById('container');
+const menu = document.getElementById('menu');
+const letters = document.getElementById('letters');
+const cake = document.getElementById('cake');
 const rotateRegex = /rotate\(\d+deg\)/;
 const scaleRegex = /scale\(\d+\.*\d*\)/;
 const scaleXRegex = /scaleX\(\d+\)/
@@ -99,7 +100,7 @@ document.addEventListener('pointermove', (event) => {
 
 document.addEventListener('pointerup', () => {
     //Removes the fruit whenever it's around the menu
-    if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '') {
+    if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
         fruit.dom.remove();
         currentFruit.dom = null;
     } else {
