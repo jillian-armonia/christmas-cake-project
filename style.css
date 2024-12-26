@@ -30,7 +30,7 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 700px;
+    flex-basis: 50em;
     height: inherit;
 }
 
@@ -61,7 +61,7 @@ body{
 }
 
 #menu{
-    width: 300px;
+    flex-basis: 20em;
     height: inherit;
     display: flex;
     flex-direction: column;
@@ -108,7 +108,7 @@ body{
 }
 
 #letters{
-    width: fit-content;
+    flex-basis: 10em;
     height: inherit;
     display: flex;
     flex-direction: column;
