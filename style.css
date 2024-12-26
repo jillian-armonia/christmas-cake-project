@@ -108,6 +108,7 @@ body{
 
 #letters{
     flex-basis: 15em;
+    height: inherit;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
