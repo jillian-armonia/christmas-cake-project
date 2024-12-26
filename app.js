@@ -108,7 +108,7 @@ document.addEventListener('pointerup', () => {
         cake.appendChild(fruit.dom);
         currentFruit.dom = fruit.dom;
     }
-    fruit.dom.style.cursor = 'auto';
+    fruit.dom.style.cursor = 'pointer';
     fruit.dom = null
 
 })

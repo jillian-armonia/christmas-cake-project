@@ -99,6 +99,11 @@ body{
     width: 60px;
 }
 
+.letter{
+    font-family: 'Conv_WG_QuickHand';
+    font-size: 1.7em;
+}
+
 .moved{
     top: auto;
     left: auto;
@@ -107,11 +112,11 @@ body{
 }
 
 #letters{
-    flex-basis: 10em;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
     align-items: center;
+    flex-basis: 10em;
     gap: 5px;
     background-color: #BC4749;
     padding: 10px;
@@ -122,11 +127,6 @@ body{
     height: 40px;
     font-size: 1.5em;
     color: black;
-}
-
-.letter{
-    font-family: 'Conv_WG_QuickHand';
-    font-size: 1.5em;
 }
 
 #cake-colors, #rotate{
