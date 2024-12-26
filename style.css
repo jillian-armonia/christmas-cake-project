@@ -43,7 +43,7 @@ body{
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    border: solid 2px;
+    border: solid 2px black;
     cursor: pointer;
 }
 
@@ -117,9 +117,10 @@ body{
 }
 
 #letters button{
-    width: 50px;
-    height: 50px;
-    font-size: 2em;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+    color: black;
 }
 
 .letter{
@@ -134,7 +135,7 @@ body{
 #flip, #clear{
     width: 50%;
     padding: 5px;
-    font-size: 1em;
+    font-size: 1.5em;
     border-radius: 50px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
