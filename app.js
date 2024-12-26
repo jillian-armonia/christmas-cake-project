@@ -48,7 +48,7 @@ function getTransformValues(prop, regex){
 
 document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
-        event.preventDefault()
+        // event.preventDefault()
         cursor = {
             x: event.clientX,
             y: event.clientY
