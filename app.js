@@ -222,13 +222,13 @@ flipBtn.onclick = () => {
 document.addEventListener('click', (event) => {
     switch(event.target.id){
         case 'white':
-            cake.style.backgroundImage = `url(./white-cake.png)`
+            cake.style.backgroundImage = `url(./whitecake.png)`
             break;
         case 'pink':
-            cake.style.backgroundImage = `url(./pink-cake.png)`;
+            cake.style.backgroundImage = `url(./pinkcake.png)`;
             break;
         case 'brown':
-            cake.style.backgroundImage = `url(./brown-cake.png)`;
+            cake.style.backgroundImage = `url(./browncake.png)`;
             break;
         default:
             break;

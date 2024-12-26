@@ -18,7 +18,7 @@ body{
 
 #cake{
     background-color: #6A994E;
-    background-image: url(./white-cake.png);
+    background-image: url(./whitecake.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -112,8 +112,8 @@ body{
 }
 
 #letters button{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     font-size: 30px;
 }
 
