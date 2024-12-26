@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'Conv_WG_QuickHand';
+	src: url('fonts/WG_QuickHand.eot');
+	src: local('☺'), url('fonts/WG_QuickHand.woff') format('woff'), url('fonts/WG_QuickHand.ttf') format('truetype'), url('fonts/WG_QuickHand.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -118,7 +126,7 @@ body{
 }
 
 .letter{
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Conv_WG_QuickHand';
 }
 
 #cake-colors, #rotate{
