@@ -89,13 +89,14 @@ body{
 }
 
 .fruit, .letter{
+    color: black;
     position: absolute;
     z-index: 0;
     transform: rotate(0) scaleX(1);
 }
 
 .fruit{
-    width: 60px;
+    width: 1em;
 }
 
 .moved{
