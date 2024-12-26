@@ -106,7 +106,7 @@ body{
 }
 
 #letters{
-    flex-basis: 13em;
+    flex-basis: 15em;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
