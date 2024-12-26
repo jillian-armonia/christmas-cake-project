@@ -30,7 +30,7 @@ body{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    flex-basis: 50em;
+    flex-basis: 45em;
 }
 
 #cake-colors{
@@ -40,8 +40,8 @@ body{
 }
 
 #cake-colors button{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
     border: solid 2px;
     cursor: pointer;
@@ -60,7 +60,7 @@ body{
 }
 
 #menu{
-    flex-basis: 20em;
+    flex-basis: 22em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +106,7 @@ body{
 }
 
 #letters{
-    flex-basis: 10em;
+    flex-basis: 13em;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
@@ -128,15 +128,18 @@ body{
 
 #cake-colors, #rotate{
     width: 70%;
+    border-color: black;
 }
 
 #flip, #clear{
     width: 50%;
-    padding: 10px;
-    font-size: 2em;
+    padding: 5px;
+    font-size: 1em;
     border-radius: 50px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
+    border-color: black;
+    color: black;
 }
 
 #rotate{
