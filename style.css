@@ -31,7 +31,6 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     flex-basis: 50em;
-    height: inherit;
 }
 
 #cake-colors{
@@ -62,7 +61,6 @@ body{
 
 #menu{
     flex-basis: 20em;
-    height: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,7 +107,6 @@ body{
 
 #letters{
     flex-basis: 10em;
-    height: inherit;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap-reverse;
