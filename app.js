@@ -160,10 +160,11 @@ document.addEventListener('pointerup', (event) => {
         }
 
         prevDiff = -1;
+        fruit.dom.style.cursor = 'pointer';
+        fruit.dom = null
     }
 
-    fruit.dom.style.cursor = 'pointer';
-    fruit.dom = null
+
 
 })
 
