@@ -146,13 +146,10 @@ document.addEventListener('pointerup', (event) => {
         }
     }
 
-    if (evCache.length > 1) {
-        removeEvent(event);
-        removeEvent(event);
-    }
+    removeEvent(event);
     //ELSE IF there had been only one pointer, reset the diff tracker and continue to the move feature
     //Removes the fruit whenever it's around the menu
-    if (evCache.length == 1){
+    if (evCache.length < 2){
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
             currentFruit.dom = null;
@@ -164,8 +161,7 @@ document.addEventListener('pointerup', (event) => {
 
         prevDiff = -1;
         fruit.dom.style.cursor = 'pointer';
-        fruit.dom = null
-        removeEvent(event);
+        fruit.dom = null;
     }
 
 
