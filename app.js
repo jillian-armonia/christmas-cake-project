@@ -122,7 +122,7 @@ document.addEventListener('pointermove', (event) => {
             if (absDiff > prevDiff && scaleValue < 3){
                 scaleValue += zoomSpeed;
                 event.target.style.transform = changeTransformProp();
-            } else if (absDiff < prevDiff && scaleValue > 0.7){
+            } else if (absDiff < prevDiff && scaleValue > 1){
                 scaleValue -= zoomSpeed;
                 event.target.style.transform = changeTransformProp();
             }
@@ -229,7 +229,7 @@ let zoomSpeed = 0.1;
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && scaleValue > 0.7){
+        if (event.deltaY > 0 && scaleValue > 1){
             scaleValue -= zoomSpeed
             event.target.style.transform = changeTransformProp();
         } else if (event.deltaY < 0 && scaleValue < 3){

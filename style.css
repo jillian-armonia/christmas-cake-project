@@ -62,7 +62,7 @@ body{
 }
 
 #menu{
-    flex-basis: 22em;
+    flex-basis: 25em;
     display: flex;
     flex-direction: column;
     align-items: center;
