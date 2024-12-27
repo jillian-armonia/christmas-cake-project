@@ -229,7 +229,7 @@ let zoomSpeed = 0.1;
 
 document.addEventListener('wheel', (event) => {
     if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && scaleValue > 0.3){
+        if (event.deltaY > 0 && scaleValue > 0.7){
             scaleValue -= zoomSpeed
             event.target.style.transform = changeTransformProp();
         } else if (event.deltaY < 0 && scaleValue < 3){
@@ -312,5 +312,3 @@ function changeTransformProp(){
 
     return transformString;
 }
-
-screen.orientation.lock('landscape')
