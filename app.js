@@ -97,7 +97,7 @@ document.addEventListener('pointermove', (event) => {
     evCache[index] = event;
 
     //IF there is only one pointerID, continue to the move feature
-    if (evCache.length == 1){
+    if (evCache.length < 2){
         if(fruit.dom === null) return;
     let currentCursor = {
         x: event.clientX,
