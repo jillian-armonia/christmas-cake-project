@@ -15,8 +15,8 @@ body{
 }
 
 .container{
-    width: 100vw;
-    height: 100vh;
+    width: 100vh;
+    height: 100vw;
     display: flex;
     justify-content: center;
     background-color: #386641;
