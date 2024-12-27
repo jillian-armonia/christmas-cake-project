@@ -119,10 +119,10 @@ document.addEventListener('pointermove', (event) => {
         const absDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
 
         if (prevDiff > 0){
-            if (absDiff > prevDiff){
+            if (absDiff > prevDiff && scaleValue < 3){
                 scaleValue += zoomSpeed;
                 event.target.style.transform = changeTransformProp();
-            } else if (absDiff < prevDiff){
+            } else if (absDiff < prevDiff && scaleValue > 0.3){
                 scaleValue -= zoomSpeed;
                 event.target.style.transform = changeTransformProp();
             }
@@ -160,9 +160,10 @@ document.addEventListener('pointerup', (event) => {
         }
 
         prevDiff = -1;
-        fruit.dom.style.cursor = 'pointer';
-        fruit.dom = null
     }
+
+    fruit.dom.style.cursor = 'pointer';
+    fruit.dom = null
 
 })
 
