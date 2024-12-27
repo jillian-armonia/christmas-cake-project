@@ -122,7 +122,7 @@ document.addEventListener('pointermove', (event) => {
             if (absDiff > prevDiff && scaleValue < 3){
                 scaleValue += zoomSpeed;
                 event.target.style.transform = changeTransformProp();
-            } else if (absDiff < prevDiff && scaleValue > 0.3){
+            } else if (absDiff < prevDiff && scaleValue > 0.7){
                 scaleValue -= zoomSpeed;
                 event.target.style.transform = changeTransformProp();
             }
