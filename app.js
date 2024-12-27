@@ -312,3 +312,5 @@ function changeTransformProp(){
 
     return transformString;
 }
+
+screen.orientation.lock('landscape')
