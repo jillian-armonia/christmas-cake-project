@@ -7,8 +7,6 @@
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     margin: 0;
@@ -122,6 +120,7 @@ body{
     gap: 5px;
     background-color: #BC4749;
     padding: 10px;
+    height: 95vh;
 }
 
 #letters button{
