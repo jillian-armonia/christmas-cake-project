@@ -55,7 +55,7 @@ document.addEventListener('pointerdown', (event) => {
     console.log(evCache)
     //IF there is only one event, continue to the move feature
 
-    if (evCache.length === 1){
+    if (evCache.length < 2){
         if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
             event.preventDefault();
             cursor = {
@@ -106,7 +106,7 @@ document.addEventListener('pointermove', (event) => {
                 //ELSE IF absDiff is less than prevDiff, subtract from the scaleValue with zoomSpeed and reassign the transform prop
             //ELSE reassign the prevDiff with the absDiff
 
-    if (evCache.length === 1){
+    if (evCache.length < 2){
         if(fruit.dom === null) return;
     let currentCursor = {
         x: event.clientX,
@@ -137,7 +137,7 @@ document.addEventListener('pointermove', (event) => {
             }
         }
 
-        prevDiff = absDiff;
+        prevDiff = absDiff
     }
 
 })
@@ -158,7 +158,7 @@ document.addEventListener('pointerup', (event) => {
     removeEvent(event);
     //ELSE IF there had been only one pointer, reset the diff tracker and continue to the move feature
     //Removes the fruit whenever it's around the menu
-    if (evCache.length === 1){
+    if (evCache.length < 2){
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
             currentFruit.dom = null;
