@@ -49,14 +49,12 @@ function getTransformValues(prop, regex){
 }
 
 document.addEventListener('pointerdown', (event) => {
-    /***********ENLARGING AND SHRINKING BY PINCH ZOOM************/
-    //PUSH the event  to the event cache
-    evCache.push(event)
-    console.log(evCache)
-    //IF there is only one event, continue to the move feature
+    if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
+        //PUSH the event  to the event cache to count the number of pointers
+        evCache.push(event)
 
-    if (evCache.length < 2){
-        if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
+        //IF there is only one event, continue to the move feature
+        if (evCache.length < 2){
             event.preventDefault();
             cursor = {
                 x: event.clientX,
@@ -99,13 +97,6 @@ document.addEventListener('pointermove', (event) => {
     evCache[index] = event;
 
     //IF there is only one pointerID, continue to the move feature
-    //ELSE IF there are two pointerIDs AND they are the same, continue to zoom feature
-        //ASSIGN the absolute difference of the two cached events to a variable (clientX)
-            //IF prevDiff is more than 0
-                //IF absDiff is more than prevDiff, add more to the scaleValue by zoomSpeed and reassign the transform prop
-                //ELSE IF absDiff is less than prevDiff, subtract from the scaleValue with zoomSpeed and reassign the transform prop
-            //ELSE reassign the prevDiff with the absDiff
-
     if (evCache.length < 2){
         if(fruit.dom === null) return;
     let currentCursor = {
@@ -124,7 +115,7 @@ document.addEventListener('pointermove', (event) => {
     fruit.dom.style.left = (currentFruit.x) + "px";
     fruit.dom.style.top = (currentFruit.y) + "px";
     fruit.dom.style.cursor = 'grab';
-    } else if (evCache.length === 2){
+    } else if (evCache.length === 2){ //ELSE IF there are two pointerIDs AND they are the same, continue to zoom feature
         const absDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
 
         if (prevDiff > 0){
