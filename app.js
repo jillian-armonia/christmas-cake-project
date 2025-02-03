@@ -50,11 +50,7 @@ function getTransformValues(prop, regex){
 
 document.addEventListener('pointerdown', (event) => {
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
-        //PUSH the event  to the event cache to count the number of pointers
-        evCache.push(event)
-
         //IF there is only one event, continue to the move feature
-        if (evCache.length < 2){
             event.preventDefault();
             cursor = {
                 x: event.clientX,
@@ -82,23 +78,12 @@ document.addEventListener('pointerdown', (event) => {
             getTransformValues('scaleX', scaleXRegex);
 
             fruit.dom.style.transform = changeTransformProp()
-        }
     }
 
 })
 
 document.addEventListener('pointermove', (event) => {
-    /***********ENLARGING AND SHRINKING BY PINCH ZOOM************/
-    //FIND the index of the current event in the evCache
-    const index = evCache.findIndex(
-        (cachedEv) => cachedEv.pointerId === event.pointerId
-    )
-    //REASSIGN the cached event with the current event
-    evCache[index] = event;
-
-    //IF there is only one pointerID, continue to the move feature
-    if (evCache.length == 1){
-        if(fruit.dom === null) return;
+    if(fruit.dom === null) return;
     let currentCursor = {
         x: event.clientX,
         y: event.clientY
@@ -115,41 +100,10 @@ document.addEventListener('pointermove', (event) => {
     fruit.dom.style.left = (currentFruit.x) + "px";
     fruit.dom.style.top = (currentFruit.y) + "px";
     fruit.dom.style.cursor = 'grab';
-    } else if (evCache.length === 2){ //ELSE IF there are two pointerIDs AND they are the same, continue to zoom feature
-        const absDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
-
-        if (prevDiff > 0){
-            if (absDiff > prevDiff && scaleValue < 3){
-                scaleValue += zoomSpeed;
-                event.target.style.transform = changeTransformProp();
-            } else if (absDiff < prevDiff && scaleValue > 1){
-                scaleValue -= zoomSpeed;
-                event.target.style.transform = changeTransformProp();
-            }
-        }
-
-        prevDiff = absDiff
-    }
-
 })
 
-document.addEventListener('pointerup', (event) => {
-    /***********ENLARGING AND SHRINKING BY PINCH ZOOM************/
-    //IF there had been two pointers
-        //REMOVE the pointer from the cache
-    function removeEvent(ev){
-        for (let i = 0; i < evCache.length; i++){
-            if (evCache[i].pointerId == ev.pointerId){
-                evCache.splice(i, 1);
-                break;
-            }
-        }
-    }
-
-    removeEvent(event);
-    //ELSE IF there had been only one pointer, reset the diff tracker and continue to the move feature
+document.addEventListener('pointerup', () => {
     //Removes the fruit whenever it's around the menu
-    if (evCache.length < 2){
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
             currentFruit.dom = null;
@@ -162,10 +116,6 @@ document.addEventListener('pointerup', (event) => {
         prevDiff = -1;
         fruit.dom.style.cursor = 'pointer';
         fruit.dom = null;
-    }
-
-
-
 })
 
 /***********DUPLICATE FRUIT FEATURES************/
