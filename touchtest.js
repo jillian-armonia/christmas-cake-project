@@ -35,9 +35,16 @@ let input = {
         let dx = this.x2 - this.x1;
         let dy = this.y2 - this.y1;
         return Math.sqrt(dx * dx + dy * dy);
+    },
+
+    reset(){
+        this.startDistance = 0;
+        this.startScale = this.currentScale;
+        this.x1 = null;
+        this.y1 = null;
+        this.x2 = null;
+        this.y2 = null;
     }
-
-
 }
 
 const cake = document.getElementById('cake');
@@ -113,6 +120,7 @@ function onTouchEnd(event){
     item.dom.parentNode.removeChild(item.dom);
     cake.appendChild(item.dom);
     currentItem.dom = item.dom;
+    input.reset();
     item.dom = null;
 }
 
