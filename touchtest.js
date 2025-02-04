@@ -113,7 +113,7 @@ function onTouchMove(event){
             input.currentScale = 0.3
         }
 
-        item.dom.style.transform = `scale(${scaleChange})`
+        item.dom.style.transform = `scale(${input.currentScale})`
 
     }
 }
