@@ -169,9 +169,7 @@ document.addEventListener('touchmove', (event) => {
 
 })
 
-document.addEventListener('touchend', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
+document.addEventListener('touchend', () => {
     //Removes the fruit whenever it's around the menu
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
