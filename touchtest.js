@@ -40,6 +40,8 @@ let input = {
 
 }
 
+const cake = document.getElementById('cake');
+
 function onTouchStart(event){
     event.preventDefault();
     event.stopPropagation();
@@ -97,13 +99,19 @@ function onTouchMove(event){
         let scaleChange = newDistance - input.startDistance;
         input.currentScale = input.startScale + scaleChange * 0.01;
 
-        item.dom.style.transform = `scale(${scaleChange})`
+        if (input.currentScale <= 2 || input.currentScale >= 0.3){
+            item.dom.style.transform = `scale(${scaleChange})`
+        }
+
     }
 }
 
 function onTouchEnd(event){
     event.preventDefault();
     event.stopPropagation();
+
+    item.dom.parentNode.removeChild(item.dom);
+    cake.appendChild(item.dom);
     currentItem.dom = item.dom;
     item.dom = null;
 }
