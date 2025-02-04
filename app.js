@@ -61,6 +61,7 @@ const scaleRegex = /scale\(\d+\.*\d*\)/;
 const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 let prevDiff = -1;
+let scaleValue = 1;
 
 function getTransformValues(prop, regex){
     let transform = fruit.dom.style.transform;
@@ -91,13 +92,13 @@ document.addEventListener('touchstart', (event) => {
         switch(event.touches.length){
             case 1:
                 cursor = {
-                    x: event.clientX,
-                    y: event.clientY
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY
                 }
                 fruit = {
-                    dom: event.target,
-                    x: event.target.getBoundingClientRect().left,
-                    y: event.target.getBoundingClientRect().top
+                    dom: event.touches[0].target,
+                    x: event.touches[0].target.getBoundingClientRect().left,
+                    y: event.touches[0].target.getBoundingClientRect().top
                 }
 
                 if (event.target.classList.contains('moved') === false){
@@ -114,10 +115,9 @@ document.addEventListener('touchstart', (event) => {
             case 2:
                 input.storeFingerPosition(event);
                 input.startDistance = input.calcFingerDistance();
+                input.setStartScale();
+                break;
         }
-
-
-
 
             event.target.style.zIndex = `${maxIndex += 1}`
             getTransformValues('scale', scaleRegex);
@@ -129,27 +129,49 @@ document.addEventListener('touchstart', (event) => {
 
 })
 
-document.addEventListener('pointermove', (event) => {
+document.addEventListener('touchmove', (event) => {
     if(fruit.dom === null) return;
-    let currentCursor = {
-        x: event.clientX,
-        y: event.clientY
-    }
-    let distance = {
-        x: currentCursor.x - cursor.x,
-        y: currentCursor.y - cursor.y
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    switch(event.touches.length){
+        case 1:
+            let currentCursor = {
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY
+            }
+            let distance = {
+                x: currentCursor.x - cursor.x,
+                y: currentCursor.y - cursor.y
+            }
+
+            currentFruit = {
+                x: fruit.x + distance.x,
+                y: fruit.y + distance.y
+            }
+            fruit.dom.style.left = (currentFruit.x) + "px";
+            fruit.dom.style.top = (currentFruit.y) + "px";
+            break;
+
+        case 2:
+            input.storeFingerPosition(event);
+            let newDistance = input.calcFingerDistance();
+            let scaleChange = newDistance - input.startDistance;
+            input.currentScale = input.startScale + scaleChange * 0.01;
+            scaleValue = input.currentScale;
+
+            if (scaleValue > 3) scaleValue = 3;
+            if (scaleValue < 1) scaleValue = 1;
+
+            fruit.dom.style.transform = changeTransformProp()
     }
 
-    currentFruit = {
-        x: fruit.x + distance.x,
-        y: fruit.y + distance.y
-    }
-    fruit.dom.style.left = (currentFruit.x) + "px";
-    fruit.dom.style.top = (currentFruit.y) + "px";
-    fruit.dom.style.cursor = 'grab';
 })
 
-document.addEventListener('pointerup', () => {
+document.addEventListener('touchend', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     //Removes the fruit whenever it's around the menu
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
@@ -161,7 +183,6 @@ document.addEventListener('pointerup', () => {
         }
 
         prevDiff = -1;
-        fruit.dom.style.cursor = 'pointer';
         fruit.dom = null;
 })
 
@@ -221,20 +242,19 @@ document.addEventListener('click', (event) => {
 })
 
 /***********ENLARGING AND SHRINKING FEATURES************/
-let scaleValue = 1;
-let zoomSpeed = 0.1;
+// let zoomSpeed = 0.1;
 
-document.addEventListener('wheel', (event) => {
-    if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && scaleValue > 1){
-            scaleValue -= zoomSpeed
-            event.target.style.transform = changeTransformProp();
-        } else if (event.deltaY < 0 && scaleValue < 3){
-            scaleValue += zoomSpeed
-            event.target.style.transform = changeTransformProp()
-        }
-    }
-})
+// document.addEventListener('wheel', (event) => {
+//     if (event.target.classList.contains('moved')){
+//         if (event.deltaY > 0 && scaleValue > 1){
+//             scaleValue -= zoomSpeed
+//             event.target.style.transform = changeTransformProp();
+//         } else if (event.deltaY < 0 && scaleValue < 3){
+//             scaleValue += zoomSpeed
+//             event.target.style.transform = changeTransformProp()
+//         }
+//     }
+// })
 
 /***********CLEAR BUTTON FEATURES************/
 const clearBtn = document.getElementById('clear');
