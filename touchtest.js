@@ -74,7 +74,7 @@ function onTouchStart(event){
     }
 
 
-        //IF there are TWO fingers used (PINCH SCALE FEATURE)...
+        
 }
 
 function onTouchMove(event){

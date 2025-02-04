@@ -15,6 +15,42 @@ let currentFruit = {
     y: null,
 }
 
+let input = {
+    startDistance: 0,
+    x1: null,
+    y1: null,
+    x2: null,
+    y2: null,
+    startScale: 1,
+    currentScale: 1,
+
+    storeFingerPosition(event){
+        this.x1 = event.touches[0].clientX;
+        this.y1 = event.touches[0].clientY;
+        this.x2 = event.touches[1].clientX;
+        this.y2 = event.touches[1].clientY;
+    },
+
+    calcFingerDistance(){
+        let dx = this.x2 - this.x1;
+        let dy = this.y2 - this.y1;
+        return Math.sqrt(dx * dx + dy * dy);
+    },
+
+    reset(){
+        this.startDistance = 0;
+        this.x1 = null;
+        this.y1 = null;
+        this.x2 = null;
+        this.y2 = null;
+    },
+
+    setStartScale(){
+        getTransformValues('scale', scaleRegex);
+        this.startScale = scaleValue;
+    }
+}
+
 let maxIndex = 0;
 const container = document.getElementById('container');
 const menu = document.getElementById('menu');
@@ -24,7 +60,6 @@ const rotateRegex = /rotate\(\d+deg\)/;
 const scaleRegex = /scale\(\d+\.*\d*\)/;
 const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
-const evCache = [];
 let prevDiff = -1;
 
 function getTransformValues(prop, regex){
@@ -48,29 +83,41 @@ function getTransformValues(prop, regex){
     }
 }
 
-document.addEventListener('pointerdown', (event) => {
+document.addEventListener('touchstart', (event) => {
     if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
-        //IF there is only one event, continue to the move feature
-            event.preventDefault();
-            cursor = {
-                x: event.clientX,
-                y: event.clientY
-            }
-            fruit = {
-                dom: event.target,
-                x: event.target.getBoundingClientRect().left,
-                y: event.target.getBoundingClientRect().top
-            }
+        event.preventDefault();
+        event.stopPropagation();
 
-            if (event.target.classList.contains('moved') === false){
-                event.target.classList.add('moved');
-                event.target.parentNode.click();
-                event.target.style.fontSize = '100px'
-                scaleValue = 1;
-                rotateValue = 0;
-                rotateInput.value = rotateValue;
-                flipValue = 1;
-            }
+        switch(event.touches.length){
+            case 1:
+                cursor = {
+                    x: event.clientX,
+                    y: event.clientY
+                }
+                fruit = {
+                    dom: event.target,
+                    x: event.target.getBoundingClientRect().left,
+                    y: event.target.getBoundingClientRect().top
+                }
+
+                if (event.target.classList.contains('moved') === false){
+                    event.target.classList.add('moved');
+                    event.target.parentNode.click();
+                    event.target.style.fontSize = '100px'
+                    scaleValue = 1;
+                    rotateValue = 0;
+                    rotateInput.value = rotateValue;
+                    flipValue = 1;
+                }
+                break;
+
+            case 2:
+                input.storeFingerPosition(event);
+                input.startDistance = input.calcFingerDistance();
+        }
+
+
+
 
             event.target.style.zIndex = `${maxIndex += 1}`
             getTransformValues('scale', scaleRegex);

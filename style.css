@@ -94,7 +94,7 @@ body{
     color: black;
     position: absolute;
     z-index: 0;
-    transform: rotate(0) scaleX(1);
+    transform: scale(1) rotate(0) scaleX(1);
 }
 
 .fruit{
