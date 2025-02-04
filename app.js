@@ -167,6 +167,7 @@ document.addEventListener('touchmove', (event) => {
             fruit.dom.style.transform = changeTransformProp()
     }
 
+    console.log(event.touches[0].target.off)
 })
 
 document.addEventListener('touchend', () => {
@@ -180,6 +181,7 @@ document.addEventListener('touchend', () => {
             currentFruit.dom = fruit.dom;
         }
 
+        input.reset();
         prevDiff = -1;
         fruit.dom = null;
 })
@@ -240,19 +242,19 @@ document.addEventListener('click', (event) => {
 })
 
 /***********ENLARGING AND SHRINKING FEATURES************/
-// let zoomSpeed = 0.1;
+let zoomSpeed = 0.1;
 
-// document.addEventListener('wheel', (event) => {
-//     if (event.target.classList.contains('moved')){
-//         if (event.deltaY > 0 && scaleValue > 1){
-//             scaleValue -= zoomSpeed
-//             event.target.style.transform = changeTransformProp();
-//         } else if (event.deltaY < 0 && scaleValue < 3){
-//             scaleValue += zoomSpeed
-//             event.target.style.transform = changeTransformProp()
-//         }
-//     }
-// })
+document.addEventListener('wheel', (event) => {
+    if (event.target.classList.contains('moved')){
+        if (event.deltaY > 0 && scaleValue > 1){
+            scaleValue -= zoomSpeed
+            event.target.style.transform = changeTransformProp();
+        } else if (event.deltaY < 0 && scaleValue < 3){
+            scaleValue += zoomSpeed
+            event.target.style.transform = changeTransformProp()
+        }
+    }
+})
 
 /***********CLEAR BUTTON FEATURES************/
 const clearBtn = document.getElementById('clear');
