@@ -39,7 +39,7 @@ let input = {
 
     reset(){
         this.startDistance = 0;
-        this.startScale = this.currentScale;
+        this.startScale = 1;
         this.x1 = null;
         this.y1 = null;
         this.x2 = null;
@@ -106,9 +106,14 @@ function onTouchMove(event){
         let scaleChange = newDistance - input.startDistance;
         input.currentScale = input.startScale + scaleChange * 0.01;
 
-        if (input.currentScale <= 2 || input.currentScale >= 0.3){
-            item.dom.style.transform = `scale(${scaleChange})`
+        if (input.currentScale > 2){
+            input.currentScale = 2
         }
+        if (input.currentScale < 0.3){
+            input.currentScale = 0.3
+        }
+
+        item.dom.style.transform = `scale(${scaleChange})`
 
     }
 }
