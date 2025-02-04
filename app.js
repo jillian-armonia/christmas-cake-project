@@ -62,6 +62,8 @@ const scaleXRegex = /scaleX\(\d+\)/
 const numberRegex = /\d+\.*\d*/;
 let prevDiff = -1;
 let scaleValue = 1;
+let transX = 0;
+let transY = 0;
 
 function getTransformValues(prop, regex){
     let transform = fruit.dom.style.transform;
@@ -165,9 +167,14 @@ document.addEventListener('touchmove', (event) => {
             if (scaleValue < 1) scaleValue = 1;
 
             fruit.dom.style.transform = changeTransformProp()
-    }
 
-    console.log(event.touches[0].target.off)
+            //CENTER the image after scaling
+            transX = ((fruit.dom.offsetWidth * scaleValue) / 2) - (fruit.dom.offsetWidth / 2);
+            transY = ((fruit.dom.offsetHeight * scaleValue) / 2) - (fruit.dom.offsetHeight / 2);
+
+            transX = transX / scaleValue;
+            transY = transY / scaleValue;
+    }
 })
 
 document.addEventListener('touchend', () => {
@@ -242,19 +249,26 @@ document.addEventListener('click', (event) => {
 })
 
 /***********ENLARGING AND SHRINKING FEATURES************/
-let zoomSpeed = 0.1;
+// let zoomSpeed = 0.1;
 
-document.addEventListener('wheel', (event) => {
-    if (event.target.classList.contains('moved')){
-        if (event.deltaY > 0 && scaleValue > 1){
-            scaleValue -= zoomSpeed
-            event.target.style.transform = changeTransformProp();
-        } else if (event.deltaY < 0 && scaleValue < 3){
-            scaleValue += zoomSpeed
-            event.target.style.transform = changeTransformProp()
-        }
-    }
-})
+// document.addEventListener('wheel', (event) => {
+//     if (event.target.classList.contains('moved')){
+//         if (event.deltaY > 0 && scaleValue > 1){
+//             scaleValue -= zoomSpeed
+//             event.target.style.transform = changeTransformProp();
+//         } else if (event.deltaY < 0 && scaleValue < 3){
+//             scaleValue += zoomSpeed
+//             event.target.style.transform = changeTransformProp()
+//         }
+//     }
+
+//         transX = ((event.target.offsetWidth * scaleValue) / 2) - (event.target.offsetWidth / 2);
+//         transY = ((event.target.offsetHeight * scaleValue) / 2) - (event.target.offsetHeight / 2);
+
+//         transX = transX / scaleValue;
+//         transY = transY / scaleValue;
+//         event.target.style.transform = changeTransformProp()
+// })
 
 /***********CLEAR BUTTON FEATURES************/
 const clearBtn = document.getElementById('clear');
@@ -325,7 +339,7 @@ window.addEventListener('load', createLetters)
 /***********REFACTORED FUNCTIONS************/
 //CHANGE the string if you add anything to the transform property
 function changeTransformProp(){
-    let transformString = `scale(${scaleValue}) rotate(${rotateValue}deg) scaleX(${flipValue})`
+    let transformString = `scale(${scaleValue}) rotate(${rotateValue}deg) scaleX(${flipValue}) translate(${transX}px, ${transY}px)`
 
     return transformString;
 }
