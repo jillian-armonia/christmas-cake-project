@@ -29,6 +29,7 @@ let input = {
         this.y1 = event.touches[0].clientY;
         this.x2 = event.touches[1].clientX;
         this.y2 = event.touches[1].clientY;
+        fruit.dom = event.touches[0].target
     },
 
     calcFingerDistance(){
