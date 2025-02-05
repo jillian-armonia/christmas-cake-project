@@ -13,7 +13,7 @@ body{
     justify-content: center;
     margin: 0;
     overflow: hidden;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 
 .container{
@@ -88,6 +88,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #FEFEE3;
 }
 
 .fruit, .letter{
@@ -119,10 +120,12 @@ body{
     flex-wrap: wrap-reverse;
     align-items: center;
     flex-basis: 10em;
+    flex-shrink: 0;
     gap: 5px;
     background-color: #BC4749;
     padding: 10px;
 }
+
 
 #letters button{
     width: 40px;
