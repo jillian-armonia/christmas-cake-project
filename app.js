@@ -181,8 +181,9 @@ document.addEventListener('touchmove', (event) => {
 
 })
 
-document.addEventListener('touchend', () => {
+document.addEventListener('touchend', (event) => {
     //Removes the fruit whenever it's around the menu
+    if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
         if (currentFruit.x >= menu.getBoundingClientRect().left - 100 || fruit.dom.style.left == '' || currentFruit.x <= letters.getBoundingClientRect().left + 100) {
             fruit.dom.remove();
             currentFruit.dom = null;
@@ -191,6 +192,8 @@ document.addEventListener('touchend', () => {
             cake.appendChild(fruit.dom);
             currentFruit.dom = fruit.dom;
         }
+    }
+
 
         input.reset();
         prevDiff = -1;
