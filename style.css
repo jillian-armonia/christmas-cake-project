@@ -121,7 +121,7 @@ body{
     flex-direction: column;
     flex-wrap: wrap-reverse;
     align-items: center;
-    flex: 1 1 10em;
+    flex: 1 0 5em;
     min-width: 0;
     gap: 5px;
     background-color: #BC4749;
