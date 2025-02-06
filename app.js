@@ -138,44 +138,47 @@ document.addEventListener('touchmove', (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    switch(event.touches.length){
-        case 1:
-            let currentCursor = {
-                x: event.touches[0].clientX,
-                y: event.touches[0].clientY
-            }
-            let distance = {
-                x: currentCursor.x - cursor.x,
-                y: currentCursor.y - cursor.y
-            }
+    if (event.target.classList.contains('fruit') || event.target.classList.contains('letter')){
+        switch(event.touches.length){
+            case 1:
+                let currentCursor = {
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY
+                }
+                let distance = {
+                    x: currentCursor.x - cursor.x,
+                    y: currentCursor.y - cursor.y
+                }
 
-            currentFruit = {
-                x: fruit.x + distance.x,
-                y: fruit.y + distance.y
-            }
-            fruit.dom.style.left = (currentFruit.x) + "px";
-            fruit.dom.style.top = (currentFruit.y) + "px";
-            break;
+                currentFruit = {
+                    x: fruit.x + distance.x,
+                    y: fruit.y + distance.y
+                }
+                fruit.dom.style.left = (currentFruit.x) + "px";
+                fruit.dom.style.top = (currentFruit.y) + "px";
+                break;
 
-        case 2:
-            input.storeFingerPosition(event);
-            let newDistance = input.calcFingerDistance();
-            let scaleChange = newDistance - input.startDistance;
-            input.currentScale = input.startScale + scaleChange * 0.01;
-            scaleValue = input.currentScale;
+            case 2:
+                input.storeFingerPosition(event);
+                let newDistance = input.calcFingerDistance();
+                let scaleChange = newDistance - input.startDistance;
+                input.currentScale = input.startScale + scaleChange * 0.01;
+                scaleValue = input.currentScale;
 
-            if (scaleValue > 3) scaleValue = 3;
-            if (scaleValue < 1) scaleValue = 1;
+                if (scaleValue > 3) scaleValue = 3;
+                if (scaleValue < 1) scaleValue = 1;
 
-            fruit.dom.style.transform = changeTransformProp()
+                fruit.dom.style.transform = changeTransformProp()
 
-            //CENTER the image after scaling
-            transX = ((fruit.dom.offsetWidth * scaleValue) / 2) - (fruit.dom.offsetWidth / 2);
-            transY = ((fruit.dom.offsetHeight * scaleValue) / 2) - (fruit.dom.offsetHeight / 2);
+                //CENTER the image after scaling
+                transX = ((fruit.dom.offsetWidth * scaleValue) / 2) - (fruit.dom.offsetWidth / 2);
+                transY = ((fruit.dom.offsetHeight * scaleValue) / 2) - (fruit.dom.offsetHeight / 2);
 
-            transX = transX / scaleValue;
-            transY = transY / scaleValue;
+                transX = transX / scaleValue;
+                transY = transY / scaleValue;
+        }
     }
+
 })
 
 document.addEventListener('touchend', () => {
