@@ -88,7 +88,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FEFEE3;
+    background-color: white;
+    border-radius: 5px;
+    border: lightslategray solid 2px;
 }
 
 .fruit, .letter{
