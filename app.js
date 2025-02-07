@@ -165,8 +165,14 @@ document.addEventListener('touchmove', (event) => {
                 input.currentScale = input.startScale + scaleChange * 0.01;
                 scaleValue = input.currentScale;
 
-                if (scaleValue > 3) scaleValue = 3;
-                if (scaleValue < 1) scaleValue = 1;
+                if (scaleValue > 3) {
+                    scaleValue = 3;
+                    input.currentScale = 3;
+                }
+                if (scaleValue < 1) {
+                    scaleValue = 1;
+                    input.currentScale = 1;
+                }
 
                 fruit.dom.style.transform = changeTransformProp()
 
