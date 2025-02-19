@@ -347,7 +347,16 @@ function createLetters(){
     }
 }
 
-window.addEventListener('load', createLetters)
+window.onresize = function(){
+    document.body.height = window.innerHeight
+}
+
+window.addEventListener('load', () =>  {
+    createLetters();
+    window.onresize();
+})
+
+
 
 /***********REFACTORED FUNCTIONS************/
 //CHANGE the string if you add anything to the transform property
