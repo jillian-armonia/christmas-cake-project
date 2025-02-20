@@ -125,11 +125,9 @@ body{
     flex-direction: column;
     flex-wrap: wrap-reverse;
     align-items: center;
-    flex: 0 0 10em;
     gap: 3px;
     background-color: #BC4749;
     padding: 10px 5px 40px;
-    height: 95%;
 }
 
 
