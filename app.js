@@ -112,6 +112,8 @@ document.addEventListener('touchstart', (event) => {
                     rotateValue = 0;
                     rotateInput.value = rotateValue;
                     flipValue = 1;
+                    input.startScale = 1;
+                    input.currentScale = 1;
                 }
                 break;
 
