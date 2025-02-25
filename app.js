@@ -350,6 +350,7 @@ function createLetters(){
 window.onresize = function(){
     document.body.height = window.innerHeight;
     document.querySelector(".container").height = window.innerHeight;
+    cake.height = window.innerHeight;
 }
 
 window.addEventListener('load', () =>  {
